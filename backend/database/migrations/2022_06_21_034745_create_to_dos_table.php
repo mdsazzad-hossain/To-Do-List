@@ -18,7 +18,7 @@ class CreateToDosTable extends Migration
             $table->string('title',100)->unique();
             $table->text('description')->nullable();
             $table->date('date_time');
-            $table->enum('status',['Active', 'Inactive'])->default(1)->comment('1=Active, 2=Inactive');
+            $table->enum('status',['Active', 'Inactive'])->default('Active');
             $table->timestamps();
         });
     }

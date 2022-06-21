@@ -23,10 +23,12 @@ class UpdateToDoRequest extends FormRequest
      */
     public function rules()
     {
+        // info($this['title']);
         return [
-            'title'      => 'required|unique:to_dos,'.$this->todo['id'],
+            'title'      => 'required|unique:to_dos,title,'.$this['id'],
             'date_time'   => 'required',
-            'status'    => 'required|in:active,inactive'
+            'description'   => 'nullable',
+            'status'    => 'required|in:Active,Inactive'
         ];
     }
 }

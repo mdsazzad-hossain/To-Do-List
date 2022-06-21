@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreToDoRequest;
-use App\Http\Requests\UpdateToDoRequest;
 use App\Models\ToDo;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreToDoRequest;
+use App\Http\Requests\UpdateToDoRequest;
 
 class ToDoController extends Controller
 {
@@ -18,7 +18,7 @@ class ToDoController extends Controller
     {
         $toDoLIst = ToDo::latest('created_at')->get();
 
-        return apiResponse(null, $toDoLIst, 200);
+        return apiResponse(null, 200, $toDoLIst);
     }
 
     /**
@@ -52,9 +52,9 @@ class ToDoController extends Controller
      * @param  \App\Models\ToDo  $toDo
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateToDoRequest $request, ToDo $toDo)
+    public function update(UpdateToDoRequest $request, $id)
     {
-        ToDo::create($request->validated());
+        ToDo::where('id',$id)->update($request->validated());
 
         return apiResponse('Todo updated successfully');
     }
@@ -65,9 +65,9 @@ class ToDoController extends Controller
      * @param  \App\Models\ToDo  $toDo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ToDo $toDo)
+    public function destroy($id)
     {
-        $toDo->delete();
+        ToDo::where('id',$id)->delete();
         return apiResponse('Todo deleted successfully');
     }
 }

@@ -26,7 +26,8 @@ class StoreToDoRequest extends FormRequest
         return [
             'title'      => 'required|unique:to_dos',
             'date_time'   => 'required',
-            'status'    => 'required|in:active,inactive'
+            'description'   => 'nullable',
+            'status'    => 'required|in:Active,Inactive'
         ];
     }
 }

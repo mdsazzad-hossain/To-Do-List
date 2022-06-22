@@ -31,10 +31,15 @@
 </template>
 
 <script>
+import {getData} from '../api-config'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  async mounted(){
+    const user = await getData();
+    console.log('jjj',user);
   }
 }
 </script>
